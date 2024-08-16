@@ -1,0 +1,15 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<int>
+
+<h2>Bảng xếp hạng tháng </h2>
+<ul>
+	@foreach (var month in Model)
+	{
+		<li>
+			<a asp-action="ScoresByMonth" asp-route-month="@month" asp-route-year="2024">@month</a>
+		</li>
+	}
+</ul>

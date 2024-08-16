@@ -1,0 +1,33 @@
+﻿@model ScoreBoard.ViewModels.ScoresVM
+
+<h2>Điểm của người dùng trong tháng @ViewData["Month"]</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Người dùng</th>
+            <th>Điểm</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var score in Model.Scores!)
+        {
+            <tr>
+                <td>@score.User!.Name</td>
+                <td>@score.UserScore</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    @if (Model.PageIndex > 1)
+    {
+        <a asp-action="ScoresByMonth" asp-route-month="@ViewData["Month"]" asp-route-pageIndex="@(Model.PageIndex - 1)" asp-route-pageSize="@Model.PageSize">Trước</a>
+    }
+
+    @if ((Model.PageIndex * Model.PageSize) < Model.TotalCount)
+    {
+        <a asp-action="ScoresByMonth" asp-route-month="@ViewData["Month"]" asp-route-pageIndex="@(Model.PageIndex + 1)" asp-route-pageSize="@Model.PageSize">Sau</a>
+    }
+</div>
